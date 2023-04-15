@@ -54,9 +54,23 @@
 
 	}
 
-
+/**
+ * Para realizar esta funcion he decidido hacerlo simplemente con una funcion comparativa
+ * si los datos nombre y correo se ajustan con los predefinidos, será true, en caso
+ */
 	function esSuperadmin($nombre, $correo){
 
+		function esSuperadmin($nombre, $correo) {
+			$superadmin_nombre = "Jack Blue";
+			$superadmin_correo = "jack@blue.com";
+		  
+			if ($nombre == $superadmin_nombre && $correo == $superadmin_correo) {
+			  
+			  return true;
+			} else {
+			  return false;
+			}
+		  }
 }
 
 
@@ -86,7 +100,6 @@
 
 
 	function getProducto($ID) {
-		// Completar...	
 	}
 
 
@@ -95,18 +108,25 @@
 	}
 
 
-	function anadirProducto($nombre, $coste, $precio, $categoria) {
-		// Completar...	
+	function anadirProducto($name, $cost, $price, $category_id) {
+		$sql = "INSERT INTO product (name, cost, price, category_id) VALUES ('$name', '$cost', '$price', '$category_id')";
+		$conexion = crearConexion();
+		$resultado = $conexion->query($sql);
+		return $resultado;
 	}
 
 
 	function borrarProducto($id) {
-		// Completar...	
-	}
+		return "DELETE FROM product WHERE id = '$id'";
+		
+}
 
 
-	function editarProducto($id, $nombre, $coste, $precio, $categoria) {
-		// Completar...	
+	function editarProducto($id, $name, $cost, $price, $category_id) {
+		$sql = "UPDATE product SET name = '$name', cost = '$cost', price = '$price', category_id = '$category_id' WHERE id = '$id'";
+		$conexion = crearConexion();
+		$resultado = $conexion->query($sql);
+		return $resultado;	
 	}
 
 ?>

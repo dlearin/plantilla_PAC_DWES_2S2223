@@ -12,6 +12,7 @@
 
 		include "funciones.php";
 
+
 		/**
 		 * 	Por motivos de seguridad, he decidido incluir nuevamente la comprobación del tipo de usuario
 		 * por lo que comprobamos si el usuario tiene los permisos suficientes

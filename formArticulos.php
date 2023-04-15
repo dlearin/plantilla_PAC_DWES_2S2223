@@ -69,18 +69,18 @@
 						// Agregando nuevo articulo
 
 						case 'anadir':
-
-						$sql = "INSERT INTO product (name, cost, price, category_id) VALUES ('$name', '$cost', '$price', '$category_id')";
+						
+						$resultado = anadirProducto($name, $cost, $price, $category_id);
 						$mensaje = "El articulo se ha añadido correctamente.";
 						$articulo_anadido = true;
+						break;						
 
-						break;
 
 						// Modificando articulo existente
 
 						case 'modificar':
 				
-						$sql = "UPDATE product SET name = '$name', cost = '$cost', price = '$price', category_id = '$category_id' WHERE id = '$id'";
+						$resultado = editarProducto($id, $name, $cost, $price, $category_id);
 						$mensaje = "El articulo se ha modificado correctamente.";
 						$articulo_modificado = true;
 						break;
@@ -89,15 +89,13 @@
 
 						case 'borrar':
 
-						$sql = "DELETE FROM product WHERE id = '$id'";
+						$sql = borrarProducto($id);
 						$mensaje = "El articulo se ha borrado correctamente.";
 						$articulo_borrado = true;
 						break;
 					} 
 
-					// Ejecutamos la consulta SQL
-					$conexion = crearConexion();
-					$resultado = $conexion->query($sql);
+					
 
 					if ($articulo_borrado) {
 						// Mostramos mensaje de confirmación y salimos del script
@@ -194,7 +192,7 @@
 				$producto = $resultado->fetch_assoc();
 
 				// a CONTINUACIÓN se muestra el formulario 
-				echo "<h2>¿Está seguro que desea modificar el siguiente articulo?</h2>";
+				echo "<h2>¿Está seguro que desea añadir el siguiente articulo?</h2>";
 				echo "<form method='post'>";
 				echo "<input type='hidden' name='id' value='$id'>";
 				echo "<label>ID:</label><input type='text' name='id' value='$id'><br>";
